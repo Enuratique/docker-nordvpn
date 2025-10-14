@@ -3,11 +3,11 @@ FROM ivonet/python-alpine-s6:3.14.0a3-alpine3.21-v3.2.0.1
 LABEL maintainer="IvoNet.nl"
 
 # Install required packages
-RUN apk --no-cache --no-progress add jq iptables ip6tables openvpn unzip curl       \
+RUN apk --no-cache --no-progress add jq iptables ip6tables openvpn                   \
  && pip install requests                                                             \
- && mkdir -p /vpn /ovpn /credentials                                                \
- && curl -L -o /tmp/ovpn.zip "https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip" \
- && unzip -o /tmp/ovpn.zip -d /ovpn/                                                \
+ && mkdir -p /vpn                                                                    \
+ && mkdir -p /ovpn                                                                   \
+ && mkdir -p /credentials                                                            \
  && rm -rf /tmp/*
 
 ENV HOME=/root                                                                       \
